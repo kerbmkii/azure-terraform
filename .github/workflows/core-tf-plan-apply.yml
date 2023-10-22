@@ -150,4 +150,4 @@ jobs:
 
       # Terraform Apply
       - name: Terraform Apply
-        run: terraform -chdir="./prod/core" apply -auto-approve tfplan
+        run: terraform -chdir="./prod/core" apply -auto-approve ./prod/core/tfplan
