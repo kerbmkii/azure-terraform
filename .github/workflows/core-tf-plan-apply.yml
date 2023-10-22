@@ -145,7 +145,7 @@ jobs:
       - name: Download Terraform Plan
         uses: actions/download-artifact@v3
         with:
-          name: tfplan
+          name: ./prod/core/tfplan
 
       # Terraform Apply
       - name: Terraform Apply
