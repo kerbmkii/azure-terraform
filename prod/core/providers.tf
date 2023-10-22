@@ -10,9 +10,11 @@ terraform {
     storage_account_name = "satfstatenk"
     container_name       = "tf-state"
     key                  = "core.tfstate"
+    use_oidc             = true
   }
 }
 
 provider "azurerm" {
   features {}
+  use_oidc = true
 }
