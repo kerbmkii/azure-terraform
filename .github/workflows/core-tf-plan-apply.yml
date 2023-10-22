@@ -146,6 +146,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: tfplan
+          path: ./prod/core/tfplan
 
       # Terraform Apply
       - name: Terraform Apply
