@@ -5,12 +5,14 @@ on:
     branches:
       - main
     paths:
-      - "prod/core"
+      - ".github/workflows/core-tf-plan-apply.yml"
+      - "prod/core/**"
   pull_request:
     branches:
       - main
     paths:
-      - "prod/core"
+      - ".github/workflows/core-tf-plan-apply.yml"
+      - "prod/core/**"
 
 #Special permissions required for OIDC authentication
 permissions:
