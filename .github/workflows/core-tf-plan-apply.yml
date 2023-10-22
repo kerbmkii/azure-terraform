@@ -146,8 +146,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: tfplan
-          path: ./prod/core/tfplan
+          path: ./prod/core/
 
       # Terraform Apply
       - name: Terraform Apply
-        run: terraform -chdir="./prod/core" apply -auto-approve ./prod/core/tfplan
+        run: terraform -chdir="./prod/core" apply -auto-approve tfplan
