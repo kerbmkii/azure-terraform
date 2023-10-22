@@ -1,12 +1,16 @@
-name: "Terraform Plan/Apply"
+name: "Terraform Plan/Apply: Core"
 
 on:
   push:
     branches:
       - main
+    paths:
+      - "prod/core"
   pull_request:
     branches:
       - main
+    paths:
+      - "prod/core"
 
 #Special permissions required for OIDC authentication
 permissions:
@@ -43,12 +47,12 @@ jobs:
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
-        run: terraform init
+        run: terraform -chdir="./prod/core" init
 
       # Checks that all Terraform configuration files adhere to a canonical format
       # Will fail the build if not
       - name: Terraform Format
-        run: terraform fmt -check
+        run: terraform -chdir="./prod/core" fmt -check
 
       # Generates an execution plan for Terraform
       # An exit code of 0 indicated no changes, 1 a terraform failure, 2 there are pending changes.
@@ -56,7 +60,7 @@ jobs:
         id: tf-plan
         run: |
           export exitcode=0
-          terraform plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
+          terraform -chdir="./prod/core" plan -detailed-exitcode -no-color -out tfplan || export exitcode=$?
 
           echo "exitcode=$exitcode" >> $GITHUB_OUTPUT
 
@@ -133,7 +137,7 @@ jobs:
 
       # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
       - name: Terraform Init
-        run: terraform init
+        run: terraform -chdir="./prod/core" init
 
       # Download saved plan from artifacts
       - name: Download Terraform Plan
@@ -143,4 +147,4 @@ jobs:
 
       # Terraform Apply
       - name: Terraform Apply
-        run: terraform apply -auto-approve tfplan
+        run: terraform -chdir="./prod/core" apply -auto-approve tfplan
