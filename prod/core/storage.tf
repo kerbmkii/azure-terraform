@@ -19,5 +19,5 @@ resource "azurerm_storage_share" "cloud_storage_nfs" {
   storage_account_name = azurerm_storage_account.cloud_storage.name
   access_tier          = "Hot"
   enabled_protocol     = "NFS"
-  quota                = 64
+  quota                = 128
 }
